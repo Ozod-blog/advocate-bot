@@ -1,4 +1,4 @@
-import os
+from os import getenv
 import logging
 import asyncio
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
