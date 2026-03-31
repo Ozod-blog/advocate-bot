@@ -164,7 +164,7 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ─── MAIN ────────────────────────────────────────────────────────────────────
 
 async def main():
-    token = os.getenv("BOT_TOKEN")
+    token =getenv("BOT_TOKEN")
     if not token:
         raise ValueError("BOT_TOKEN topilmadi!")
     
