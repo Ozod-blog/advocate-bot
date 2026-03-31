@@ -1,7 +1,7 @@
 import sqlite3
-from os import getenv
+import os 
 
-DB_PATH = getenv("DB_PATH", "advocate.db")
+DB_PATH = os.getenv("DB_PATH", "advocate.db")
 
 class Database:
     def __init__(self):
