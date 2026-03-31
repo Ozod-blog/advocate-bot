@@ -24,7 +24,7 @@ ADMIN_PASSWORD, ADMIN_MENU, ADD_CONTENT, VIEW_ENTRIES, DELETE_CONFIRM = range(5)
 db = Database()
 ai = AIHandler()
 
-ADMIN_PASS = os.getenv("ADMIN_PASSWORD")
+ADMIN_PASS = getenv("ADMIN_PASSWORD")
 
 # ─── USER: savol-javob ───────────────────────────────────────────────────────
 
