@@ -1,4 +1,4 @@
-from os import getenv
+import os
 from google import genai
 from google.genai import types # type: ignore # Tizim ko'rsatmalari uchun kerak
 from dotenv import load_dotenv # type: ignore
@@ -8,7 +8,7 @@ load_dotenv()
 class AIHandler:
     def __init__(self):
         # API kalitini .env dan yuklash
-        self.client = genai.Client(api_key=getenv("GEMINI_API_KEY"))
+        self.client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
         
         # Siz xohlagan model (Gemini 3 Flash - eng yangi va tekin limitli model)
         self.model_id = "gemini-3-flash-preview" 
