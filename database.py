@@ -12,7 +12,7 @@ class Database:
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS knowledge_base (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    title TEXT NOT NULL,
+                    EXT NOT NULL,
                     content TEXT NOT NULL,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
@@ -24,11 +24,11 @@ class Database:
         conn.row_factory = sqlite3.Row
         return conn
 
-    def add_entry(self, title: str, content: str) -> int:
+    def add_entry(self, str, content: str) -> int:
         with self._connect() as conn:
             cur = conn.execute(
-                "INSERT INTO knowledge_base (title, content) VALUES (?, ?)",
-                (title, content)
+                "INSERT INTO knowledge_base (content) VALUES (?, ?)",
+                (content)
             )
             conn.commit()
             return cur.lastrowid
@@ -36,14 +36,14 @@ class Database:
     def get_all_entries(self) -> list:
         with self._connect() as conn:
             rows = conn.execute(
-                "SELECT id, title, content, created_at FROM knowledge_base ORDER BY created_at DESC"
+                "SELECT id, content, created_at FROM knowledge_base ORDER BY created_at DESC"
             ).fetchall()
             return [dict(row) for row in rows]
 
     def get_entry(self, entry_id: int) -> dict | None:
         with self._connect() as conn:
             row = conn.execute(
-                "SELECT id, title, content, created_at FROM knowledge_base WHERE id = ?",
+                "SELECT id, content, created_at FROM knowledge_base WHERE id = ?",
                 (entry_id,)
             ).fetchone()
             return dict(row) if row else None

@@ -1,7 +1,7 @@
 import os
 from google import genai
-from google.genai import types # Tizim ko'rsatmalari uchun kerak
-from dotenv import load_dotenv
+from google.genai import types # type: ignore # Tizim ko'rsatmalari uchun kerak
+from dotenv import load_dotenv # type: ignore
 
 load_dotenv()
 
