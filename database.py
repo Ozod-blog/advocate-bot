@@ -27,7 +27,7 @@ class Database:
     def add_entry(self, str, content: str) -> int:
         with self._connect() as conn:
             cur = conn.execute(
-                "INSERT INTO knowledge_base (content) VALUES (?, ?)",
+                "INSERT INTO knowledge_base (content) VALUES (?)",
                 (content)
             )
             conn.commit()
