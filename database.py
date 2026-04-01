@@ -28,7 +28,7 @@ class Database:
         with self._connect() as conn:
             cur = conn.execute(
                 "INSERT INTO knowledge_base (title,content) VALUES (?,?)",
-                (content)
+                (title,content)
             )
             conn.commit()
             return cur.lastrowid
