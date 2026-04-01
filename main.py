@@ -151,7 +151,7 @@ async def add_content(update: Update, context: ContextTypes.DEFAULT_TYPE):
     content = update.message.text
     # Sarlavha sifatida matnning birinchi 30 ta belgisini avtomatik olamiz (DB xatosi bermasligi uchun)
     title = content[:30] + "..." if len(content) > 30 else content
-    db.add_entry(content)
+    db.add_entry(title, content)
     await update.message.reply_text("✅ Matn muvaffaqiyatli saqlandi!")
     await show_admin_menu(update, context)
     return ADMIN_MENU
