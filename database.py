@@ -27,7 +27,7 @@ class Database:
     def add_entry(self, str, content: str) -> int:
         with self._connect() as conn:
             cur = conn.execute(
-                "INSERT INTO knowledge_base (content) VALUES (?)",
+                "INSERT INTO knowledge_base (title,content) VALUES (?,?)",
                 (content)
             )
             conn.commit()
@@ -36,14 +36,14 @@ class Database:
     def get_all_entries(self) -> list:
         with self._connect() as conn:
             rows = conn.execute(
-                "SELECT id, content, created_at FROM knowledge_base ORDER BY created_at DESC"
+                "SELECT id, title, content, created_at FROM knowledge_base ORDER BY created_at DESC"
             ).fetchall()
             return [dict(row) for row in rows]
 
     def get_entry(self, entry_id: int) -> dict | None:
         with self._connect() as conn:
             row = conn.execute(
-                "SELECT id, content, created_at FROM knowledge_base WHERE id = ?",
+                "SELECT id, title, content, created_at FROM knowledge_base WHERE id = ?",
                 (entry_id,)
             ).fetchone()
             return dict(row) if row else None
