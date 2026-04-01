@@ -1,18 +1,18 @@
 import sqlite3
-from os import getenv
+import os
 
-DB_PATH = getenv("DB_PATH", "advocate.db")
+DB_PATH = os.getenv("DB_PATH", "advocate.db")
 
 class Database:
     def __init__(self):
         self.db_path = DB_PATH
 
-    def __init__(self):
+    def init(self):
         with sqlite3.connect(self.db_path) as conn:
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS knowledge_base (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    EXT NOT NULL,
+                    title TEXT NOT NULL,
                     content TEXT NOT NULL,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
@@ -24,10 +24,10 @@ class Database:
         conn.row_factory = sqlite3.Row
         return conn
 
-    def add_entry(self, title, str, content: str) -> int:
+    def add_entry(self, title: str, content: str) -> int:
         with self._connect() as conn:
             cur = conn.execute(
-                "INSERT INTO knowledge_base (title,content) VALUES (?,?)",
+                "INSERT INTO knowledge_base (title, content) VALUES (?, ?)",
                 (title, content)
             )
             conn.commit()
