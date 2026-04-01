@@ -24,7 +24,7 @@ class Database:
         conn.row_factory = sqlite3.Row
         return conn
 
-    def add_entry(self, str, content: str) -> int:
+    def add_entry(self, title, str, content: str) -> int:
         with self._connect() as conn:
             cur = conn.execute(
                 "INSERT INTO knowledge_base (title,content) VALUES (?,?)",
