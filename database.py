@@ -7,7 +7,7 @@ class Database:
     def __init__(self):
         self.db_path = DB_PATH
 
-    def init(self):
+    def __init__(self):
         with sqlite3.connect(self.db_path) as conn:
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS knowledge_base (
@@ -28,7 +28,7 @@ class Database:
         with self._connect() as conn:
             cur = conn.execute(
                 "INSERT INTO knowledge_base (title,content) VALUES (?,?)",
-                (title,content)
+                (title, content)
             )
             conn.commit()
             return cur.lastrowid
