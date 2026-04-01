@@ -17,7 +17,7 @@ class AIHandler:
         # Bilimlar bazasini matnga aylantirish
         knowledge = ""
         for i, entry in enumerate(entries, 1):
-            knowledge += f"\n--- {i}. {entry['content']}\n"
+            knowledge += f"\n--- {i}. {entry['title']} --{entry['content']}\n"
 
         # Tizim ko'rsatmasi (System Instruction)
         # Yangi SDKda buni config qismida berish juda qulay
